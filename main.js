@@ -1,4 +1,19 @@
 
+import { Application } from "https://esm.sh/@splinetool/runtime";
+
+// make sure you have a canvas in the body
+const canvas = document.getElementById('canvas3d');
+
+// start the application and load the scene
+const spline = new Application(canvas);
+spline.load('https://prod.spline.design/qiNO8oYRDMMfNw8j/scene.splinecode');
+
+
+
+const start = -14.11
+const end = -67.11
+
+
 
 const getMS = (time) => {
     const times = time.split(":", 3).map(Number)
@@ -30,9 +45,12 @@ const Timer = (ms, signal) => {
             return reject({message : "Something went wrong", time : 0})
         }
 
+
         const updater = setInterval(() => {
             TimeView.innerText = MS_ToF(Math.floor(performance.now() - startTime))
         }, 1000)
+
+        emptyBottle("liquid" ,end, start, ms)
 
         const timer = setTimeout(() => {
             clearInterval(updater)
@@ -76,3 +94,23 @@ document.getElementById("testButton").addEventListener("click", () => {
 
     })
 })
+
+const emptyBottle = (variable, final, intial, ms) => {
+    let startTime = null;
+
+    function animate(time) {
+        if (!startTime) startTime = time
+        const elasped = time - startTime;
+        let progress = Math.min(elasped / ms, 1);
+
+        const current = intial + (final - intial) * progress;
+
+        spline.setVariables({ [variable] : current})
+
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        }
+    }
+
+    requestAnimationFrame(animate);
+}
