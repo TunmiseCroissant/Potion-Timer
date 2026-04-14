@@ -1,17 +1,17 @@
 
 import { Application } from "https://esm.sh/@splinetool/runtime";
 
-// make sure you have a canvas in the body
 const canvas = document.getElementById('canvas3d');
 
-// start the application and load the scene
 const spline = new Application(canvas);
-spline.load('https://prod.spline.design/qiNO8oYRDMMfNw8j/scene.splinecode');
+spline.load("https://draft.spline.design/Tsnx030f3UyyvhRs/scene.splinecode").then(() => {
+  console.log(spline.getAllObjects())
+});
 
 
 
 const start = -14.11
-const end = -67.11
+const end = -66.11
 
 
 
@@ -37,26 +37,36 @@ const MS_ToF = (ms) => {
 }
 
 const Timer = (ms, signal) => {
+    // start time is this exact time
     const startTime = performance.now();
+    // gets the document element
     const TimeView = document.getElementById("TimeView")
 
+    // returns a new promise
     return new Promise ((resolve, reject) => {
+        // if timer is stopped
         if (signal?.aborted) {
             return reject({message : "Something went wrong", time : 0})
         }
 
-
+        let elapsedTime = 0;
+        // update time every second
+        TimeView.innerText = MS_ToF(Math.floor(ms - elapsedTime))
         const updater = setInterval(() => {
-            TimeView.innerText = MS_ToF(Math.floor(performance.now() - startTime))
+            elapsedTime += 1000;
+            TimeView.innerText = MS_ToF(Math.floor(ms - elapsedTime))
         }, 1000)
 
+        //start to empty bottle
         emptyBottle("liquid" ,end, start, ms)
 
+        //when time is done, time is completed
         const timer = setTimeout(() => {
             clearInterval(updater)
             resolve({message : "Time completed", time : ms})
         }, ms)
 
+        // if timer is stopoped, stop countdown and updated
         signal?.addEventListener("abort", () => {
             clearTimeout(timer);
             clearInterval(updater)
@@ -68,16 +78,21 @@ const Timer = (ms, signal) => {
 }
 
 const startTimer = (time) => {
+    // turn time to ms
     const ms = getMS(time);
 
+    // controller to abort timer
     const controller = new AbortController();
 
+    // promise based off the timer
     const prom = Timer(ms, controller.signal)
     return {controller: controller, promise : prom}
 }
 
 
 document.getElementById("testButton").addEventListener("click", () => {
+    
+    // set time to the input
     const time = document.getElementById("timeInput").value
     console.log(time)
     let timer = startTimer(time)

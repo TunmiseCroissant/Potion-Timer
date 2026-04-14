@@ -7,10 +7,16 @@
     <body>
         <input type = "text" id = "timeInput">
         <button id = "testButton">Test button</button>
-        <button id = "abortButton">Abbort</button>
-        <p id = "TimeView"> </p>
-        <canvas id = "canvas3d"></canvas>
-        
+        <div id = "canvas">
+        <canvas id="canvas3d" width="400" height="400"></canvas>
+        </div>
+         <div id = "main">
+            <div id = "options">
+                <p id = "TimeView">00:22:45</p>
+                <button id = "pauseButton">Pause</button>
+                <button id = "abortButton">Cancel</button>
+            </div>
+         </div>
         <script type = "module" src = "./main.js"></script>
     </body>
 </html>
