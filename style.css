@@ -104,6 +104,8 @@ body {
     text-align: center;
     border: solid #2f175d 3px;
     border-radius: 10px;
+    color: black;
+    background-color: white;
 
 }
 
@@ -132,6 +134,7 @@ body {
     border-radius: 10px;
     text-align: center;
     padding: 20px;
+    cursor: pointer;
 
 }
 
@@ -157,7 +160,6 @@ body {
     width: 80vw;
     height: 80vh;
     border-radius: 50px;
-    display: flex;
     background-color:#1c0c39;
 }
 
@@ -179,9 +181,22 @@ body {
     background-color: white;
     color: #1c0c39;
     text-align: center;
+    cursor: pointer;
 }
 
 .title {
     margin-left: 30px;
     font-size: 1.8vw;
+}
+
+#dialogBackground {
+    height: 100%;
+}
+
+#startButton {
+    cursor: pointer;
+}
+
+.up-arrow, .down-arrow {
+    cursor: pointer;
 }

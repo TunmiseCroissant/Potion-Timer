@@ -5,8 +5,6 @@
         <link rel = "stylesheet" href="./style.css">
     </head>
     <body>
-        <input type = "text" id = "timeInput">
-        <button id = "testButton">Test button</button>
         <div id = "canvas">
         <canvas id="canvas3d" width="400" height="400"></canvas>
         </div>
@@ -19,7 +17,7 @@
             </div>
          </div>
         <script type = "module" src = "./main.js"></script>
-        <dialog id = "dialogBox">
+        <dialog id = "dialogBox" class = "dialogs">
             <section class = "background" id = "dialogBackground">
                 <div class = "tab" id = "dialogTab">
                     <p class = "title">Set Timer</p>
@@ -30,7 +28,7 @@
                         <section id = "hours">
                         <div class = "number">
                             <p class = "up-arrow">▲</p>
-                            <input text = "text" readonly value = "5">
+                            <input text = "text" readonly value = 0 disabled>
                             <p class = "down-arrow">▼</p>
                         </div>
                         </section>
@@ -38,12 +36,12 @@
                         <section id = "minutes">
                         <div class = "number">
                             <p class = "up-arrow">▲</p>
-                            <input text = "number" readonly>
+                            <input text = "text" readonly value = 0 disabled>
                             <p class = "down-arrow">▼</p>
                         </div>
                         <div class = "number">
                             <p class = "up-arrow">▲</p>
-                            <input text = "number" readonly>
+                            <input text = "text" readonly value = 0 disabled>
                             <p class = "down-arrow">▼</p>
                         </div>
                         </section>
@@ -51,12 +49,12 @@
                         <section id = "seconds">
                             <div class = "number">
                             <p class = "up-arrow">▲</p>
-                            <input text = "number" readonly>
+                            <input text = "text" readonly value = 0 disabled>
                             <p class = "down-arrow">▼</p>
                         </div>
                         <div class = "number">
                             <p class = "up-arrow">▲</p>
-                            <input text = "number" readonly>
+                            <input text = "text" readonly value = 0 disabled>
                             <p class = "down-arrow">▼</p>
                         </div>
                         </section>

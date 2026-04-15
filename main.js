@@ -6,11 +6,13 @@ import { Application } from "https://esm.sh/@splinetool/runtime";
 //document elements
 const canvas = document.getElementById('canvas3d');
 const dialog = document.getElementById('dialogBox');
-dialog.showModal();
+const startButton = document.getElementById('startButton');
+const XButtons = document.querySelectorAll(".X")
+InitDoc()
 
 const spline = new Application(canvas);
 spline.load("https://draft.spline.design/2dqEETH3l8dNrvfS/scene.splinecode").then(() => {
-  console.log(spline.getAllObjects())
+
 });
 
 //variable and basic function set up
@@ -20,14 +22,14 @@ const end = -66.11
 
 // turn fancy layout to ms
 const getMS = (time) => {
-    const times = time.split(":", 3).map(Number)
+    const times = [time.slice(0,1), time.slice(1, 3), time.slice(3)]
     let seconds = 0;
     seconds += times[0] * 60 * 60;
     seconds += times[1] * 60;
     seconds += times[2];
     seconds *= 1000;
 
-
+    console.log(seconds)
     return seconds;
 }
 //turn ms to layout
@@ -97,13 +99,12 @@ const startTimer = (time) => {
 
 //Timer functions -------------------------------------------------------------------------------------------------------------//
 
-document.getElementById("testButton").addEventListener("click", async () => {
+const Begin = async (time) => {
     
     spline.setVariable('liquid', start)
     spline.setVariable('start', 'True');
     await sleep(2000);
     // set time to the input
-    const time = document.getElementById("timeInput").value
     console.log(time)
     let timer = startTimer(time)
     const abort = document.getElementById("abortButton")
@@ -118,7 +119,7 @@ document.getElementById("testButton").addEventListener("click", async () => {
     }).finally(() => {
 
     })
-})
+}
 
 //empties spline bottle
 const emptyBottle = (variable, final, intial, ms) => {
@@ -147,5 +148,61 @@ const timerDone = async (message) => {
     spline.setVariable('start', 'False');
 }
 
+//Timer UI functions ----
+
+//show timer dialog when started
+startButton.addEventListener("click", () => {
+    dialog.showModal();
+
+    //set event listeners for up and down arrows
+    document.querySelectorAll('.up-arrow').forEach(arrow => {
+        arrow.addEventListener("click", () => {
+            let parent = arrow.parentElement;
+            let OldValue = parseInt(parent.querySelector('input').value);
+            let newValue = OldValue + 1;
+            newValue = newValue > 9 ? 9 : newValue;
+            parent.querySelector('input').value = newValue
+        })
+    })
+    document.querySelectorAll('.down-arrow').forEach(arrow => {
+        arrow.addEventListener("click", () => {
+            let parent = arrow.parentElement;
+            let OldValue = parseInt(parent.querySelector('input').value);
+            let newValue = OldValue - 1;
+            newValue = newValue < 0 ? 0 : newValue;
+            parent.querySelector('input').value = newValue
+        })
+    })
+
+
+    //when time is confirmed
+    document.getElementById('confirm').addEventListener("click", () => {
+        let fText = ""
+        document.getElementById('dialog').querySelectorAll('input').forEach(num => {
+            fText += num.value
+        })
+
+        //makes sure the user actually entered something
+        if (fText != "00000") {
+            Begin(fText)
+            dialog.close();
+        }
+    })
+
+})
+
+
+//-----------------------
+
 //-----------------------------------------------------------------------------------------------------------------------------//
+
+function InitDoc() {
+    XButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            let parent = button.parentElement
+            let dialog = parent.closest(".dialogs")
+            dialog.close();
+        })
+    })
+}
 
