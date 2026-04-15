@@ -80,6 +80,73 @@ body {
 }
 
 #dialog {
-    width: 60vw;
-    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#dialog section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.number {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.number input {
+    width: 40%;
+    font-size: 7vw;
+    text-align: center;
+    border: solid #2f175d 3px;
+    border-radius: 10px;
+
+}
+
+#dialog p {
+    font-size: 3vw;
+}
+
+#dialog section p {
+    font-size: 1vw;
+    
+}
+
+#dialog section div {
+    margin: 0px;
+    padding: 0px;
+    width: 40%;
+}
+
+#hours .number {
+    width: 80%;
+}
+
+#confirm {
+    width: 50%;
+    border: #2f175d solid 3px;
+    border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+
+}
+
+#dialogBox {
+    width: 80vw;
+    height: 75vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    justify-content: space-evenly;
+    gap: 30px;
+    border-radius: 50px;
+}
+
+#dialogBox::backdrop {
+    background-color: #1c0c39a7;
 }

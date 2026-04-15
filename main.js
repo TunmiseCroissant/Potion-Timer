@@ -3,7 +3,10 @@
 // Spline set up
 import { Application } from "https://esm.sh/@splinetool/runtime";
 
+//document elements
 const canvas = document.getElementById('canvas3d');
+const dialog = document.getElementById('dialogBox');
+dialog.showModal();
 
 const spline = new Application(canvas);
 spline.load("https://draft.spline.design/2dqEETH3l8dNrvfS/scene.splinecode").then(() => {
@@ -145,3 +148,4 @@ const timerDone = async (message) => {
 }
 
 //-----------------------------------------------------------------------------------------------------------------------------//
+
