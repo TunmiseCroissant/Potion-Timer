@@ -1,3 +1,5 @@
+//Spline, base varibales, and helper functions set up ---------------------------------------------------------//
+
 // Spline set up
 import { Application } from "https://esm.sh/@splinetool/runtime";
 
@@ -10,12 +12,10 @@ spline.load("https://draft.spline.design/2dqEETH3l8dNrvfS/scene.splinecode").the
 
 //variable and basic function set up
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
 const start = -14.11
 const end = -66.11
 
-
-
+// turn fancy layout to ms
 const getMS = (time) => {
     const times = time.split(":", 3).map(Number)
     let seconds = 0;
@@ -27,7 +27,7 @@ const getMS = (time) => {
 
     return seconds;
 }
-
+//turn ms to layout
 const MS_ToF = (ms) => {
     let s = ms / 1000;
     let hours = Math.floor(s / 3600);
@@ -36,7 +36,7 @@ const MS_ToF = (ms) => {
 
     return ([hours, minutes, seconds].map(String).map(s => s.padStart(2, '0')).join(":"))
 }
-
+//timer promise
 const Timer = (ms, signal) => {
     // start time is this exact time
     const startTime = performance.now();
@@ -77,7 +77,7 @@ const Timer = (ms, signal) => {
 
     })
 }
-
+//startsTimer
 const startTimer = (time) => {
     // turn time to ms
     const ms = getMS(time);
@@ -90,6 +90,9 @@ const startTimer = (time) => {
     return {controller: controller, promise : prom}
 }
 
+//-------------------------------------------------------------------------------------------------------------//
+
+//Timer functions -------------------------------------------------------------------------------------------------------------//
 
 document.getElementById("testButton").addEventListener("click", async () => {
     
@@ -114,6 +117,7 @@ document.getElementById("testButton").addEventListener("click", async () => {
     })
 })
 
+//empties spline bottle
 const emptyBottle = (variable, final, intial, ms) => {
     let startTime = null;
 
@@ -133,9 +137,11 @@ const emptyBottle = (variable, final, intial, ms) => {
 
     requestAnimationFrame(animate);
 }
-
+//when the timer is done
 const timerDone = async (message) => {
     console.log(message)
     await sleep(1000);
     spline.setVariable('start', 'False');
 }
+
+//-----------------------------------------------------------------------------------------------------------------------------//
