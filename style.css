@@ -53,15 +53,16 @@
     align-items: center;
     justify-content: space-around;
     padding: 30px;
-    font-size: 70px;
-    letter-spacing: 7px;
+    font-size: 3vw;
+    letter-spacing: 0.2vw;
     color: #1c0c39;
+    text-align: center;
 }
 
 #options button {
     height: 90%;
     width: 25%;
-    font-size: 30px;
+    font-size: 1.7vw;
     border-radius: 10px;
     background-color: white;
     color: #2f175d;
@@ -72,5 +73,9 @@ body {
     flex-direction: column;
     align-items: center;
     justify-items: end;
+}
+
+.active {
+    display: none;
 }
 

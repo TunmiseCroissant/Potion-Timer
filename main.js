@@ -1,4 +1,4 @@
-
+// Spline set up
 import { Application } from "https://esm.sh/@splinetool/runtime";
 
 const canvas = document.getElementById('canvas3d');
@@ -8,6 +8,7 @@ spline.load("https://draft.spline.design/2dqEETH3l8dNrvfS/scene.splinecode").the
   console.log(spline.getAllObjects())
 });
 
+//variable and basic function set up
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const start = -14.11
