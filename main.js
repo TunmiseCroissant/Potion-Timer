@@ -8,6 +8,8 @@ const canvas = document.getElementById('canvas3d');
 const dialog = document.getElementById('dialogBox');
 const startButton = document.getElementById('startButton');
 const XButtons = document.querySelectorAll(".X")
+const TimeView = document.getElementById("TimeView")
+let active = false
 InitDoc()
 
 const spline = new Application(canvas);
@@ -22,14 +24,13 @@ const end = -66.11
 
 // turn fancy layout to ms
 const getMS = (time) => {
-    const times = [time.slice(0,1), time.slice(1, 3), time.slice(3)]
+    const times = [time.slice(0,1), time.slice(1, 3), time.slice(3)].map(Number)
     let seconds = 0;
     seconds += times[0] * 60 * 60;
     seconds += times[1] * 60;
     seconds += times[2];
     seconds *= 1000;
 
-    console.log(seconds)
     return seconds;
 }
 //turn ms to layout
@@ -45,8 +46,6 @@ const MS_ToF = (ms) => {
 const Timer = (ms, signal) => {
     // start time is this exact time
     const startTime = performance.now();
-    // gets the document element
-    const TimeView = document.getElementById("TimeView")
 
     // returns a new promise
     return new Promise ((resolve, reject) => {
@@ -76,6 +75,10 @@ const Timer = (ms, signal) => {
         signal?.addEventListener("abort", () => {
             clearTimeout(timer);
             clearInterval(updater)
+            timerActive(false)
+            spline.setVariable('start', 'False');
+            let position = spline.getVariable('liquid')
+            finishBottle('liquid', end, position, 2000)
             const endTime = performance.now()
             reject({message: "Timer stopped early!", time : Math.floor(endTime - startTime)}, {once : true})
         })
@@ -101,11 +104,12 @@ const startTimer = (time) => {
 
 const Begin = async (time) => {
     
+    timerActive(true)
+    TimeView.innerText = MS_ToF(getMS(time));
     spline.setVariable('liquid', start)
     spline.setVariable('start', 'True');
     await sleep(2000);
     // set time to the input
-    console.log(time)
     let timer = startTimer(time)
     const abort = document.getElementById("abortButton")
 
@@ -134,18 +138,41 @@ const emptyBottle = (variable, final, intial, ms) => {
 
         spline.setVariables({ [variable] : current})
 
+        if (progress < 1 && active) {
+            requestAnimationFrame(animate);
+        }
+    }
+
+    if (active) {
+        requestAnimationFrame(animate);
+    }
+}
+
+const finishBottle = (variable, final, intial, ms) => {
+    let startTime = null;
+
+    function animate(time) {
+        if (!startTime) startTime = time
+        const elasped = time - startTime;
+        let progress = Math.min(elasped / ms, 1);
+
+        const current = intial + (final - intial) * progress;
+
+        spline.setVariables({ [variable] : current})
+
         if (progress < 1) {
             requestAnimationFrame(animate);
         }
     }
 
-    requestAnimationFrame(animate);
+        requestAnimationFrame(animate);
 }
 //when the timer is done
 const timerDone = async (message) => {
-    console.log(message)
     await sleep(1000);
     spline.setVariable('start', 'False');
+    timerActive(false);
+    
 }
 
 //Timer UI functions ----
@@ -153,8 +180,44 @@ const timerDone = async (message) => {
 //show timer dialog when started
 startButton.addEventListener("click", () => {
     dialog.showModal();
+})
 
-    //set event listeners for up and down arrows
+function timerActive(on) {
+    active = on;
+    if (on) {
+        document.querySelectorAll('.inactive').forEach(button => {
+            button.style.display = "none";
+        })
+        document.querySelectorAll('.active').forEach(button => {
+            button.style.display = "block";
+        })
+    } else {
+        document.querySelectorAll('.inactive').forEach(button => {
+            button.style.display = "block";
+        })
+        document.querySelectorAll('.active').forEach(button => {
+            button.style.display = "none";
+        })
+
+        TimeView.innerText = "No Timer set"
+    }
+}
+
+//-----------------------
+
+//-----------------------------------------------------------------------------------------------------------------------------//
+
+//Init Functions ------------------------------------------------------------------------------------------------//
+function InitDoc() {
+    XButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            let parent = button.parentElement
+            let dialog = parent.closest(".dialogs")
+            dialog.close();
+        })
+    })
+
+
     document.querySelectorAll('.up-arrow').forEach(arrow => {
         arrow.addEventListener("click", () => {
             let parent = arrow.parentElement;
@@ -174,7 +237,6 @@ startButton.addEventListener("click", () => {
         })
     })
 
-
     //when time is confirmed
     document.getElementById('confirm').addEventListener("click", () => {
         let fText = ""
@@ -188,21 +250,5 @@ startButton.addEventListener("click", () => {
             dialog.close();
         }
     })
-
-})
-
-
-//-----------------------
-
-//-----------------------------------------------------------------------------------------------------------------------------//
-
-function InitDoc() {
-    XButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            let parent = button.parentElement
-            let dialog = parent.closest(".dialogs")
-            dialog.close();
-        })
-    })
 }
-
+//---------------------------------------------------------------------------------------------------------------//
