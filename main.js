@@ -4,11 +4,11 @@ import { Application } from "https://esm.sh/@splinetool/runtime";
 const canvas = document.getElementById('canvas3d');
 
 const spline = new Application(canvas);
-spline.load("https://draft.spline.design/Tsnx030f3UyyvhRs/scene.splinecode").then(() => {
+spline.load("https://draft.spline.design/2dqEETH3l8dNrvfS/scene.splinecode").then(() => {
   console.log(spline.getAllObjects())
 });
 
-
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 const start = -14.11
 const end = -66.11
@@ -90,8 +90,10 @@ const startTimer = (time) => {
 }
 
 
-document.getElementById("testButton").addEventListener("click", () => {
+document.getElementById("testButton").addEventListener("click", async () => {
     
+    spline.setVariable('start', 'True');
+    await sleep(2000);
     // set time to the input
     const time = document.getElementById("timeInput").value
     console.log(time)
@@ -102,7 +104,7 @@ document.getElementById("testButton").addEventListener("click", () => {
         timer.controller.abort()
     }, {once : true})
 
-    timer.promise.then(revolve => console.log(revolve.message)).catch((err) => {
+    timer.promise.then(resolve => timerDone(resolve.message)).catch((err) => {
         console.log(err.message)
         console.log ("Elapsed time: " + MS_ToF(err.time))
     }).finally(() => {
@@ -128,4 +130,10 @@ const emptyBottle = (variable, final, intial, ms) => {
     }
 
     requestAnimationFrame(animate);
+}
+
+const timerDone = async (message) => {
+    console.log(message)
+    await sleep(1000);
+    spline.setVariable('start', 'False');
 }
