@@ -92,6 +92,7 @@ const startTimer = (time) => {
 
 document.getElementById("testButton").addEventListener("click", async () => {
     
+    spline.setVariable('liquid', start)
     spline.setVariable('start', 'True');
     await sleep(2000);
     // set time to the input
