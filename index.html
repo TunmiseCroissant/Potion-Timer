@@ -20,42 +20,50 @@
          </div>
         <script type = "module" src = "./main.js"></script>
         <dialog id = "dialogBox">
-            <section id = "dialog">
-                <section id = "hours">
-                <div class = "number">
-                    <p class = "up-arrow">▲</p>
-                    <input text = "text" readonly value = "5">
-                    <p class = "down-arrow">▼</p>
+            <section class = "background" id = "dialogBackground">
+                <div class = "tab" id = "dialogTab">
+                    <p class = "title">Set Timer</p>
+                    <p class = "X">X</p>
                 </div>
-                </section>
-                <p>:</p>
-                <section id = "minutes">
-                <div class = "number">
-                    <p class = "up-arrow">▲</p>
-                    <input text = "number" readonly>
-                    <p class = "down-arrow">▼</p>
-                </div>
-                <div class = "number">
-                    <p class = "up-arrow">▲</p>
-                    <input text = "number" readonly>
-                    <p class = "down-arrow">▼</p>
-                </div>
-                </section>
-                <p>:</p>
-                <section id = "seconds">
-                    <div class = "number">
-                    <p class = "up-arrow">▲</p>
-                    <input text = "number" readonly>
-                    <p class = "down-arrow">▼</p>
-                </div>
-                <div class = "number">
-                    <p class = "up-arrow">▲</p>
-                    <input text = "number" readonly>
-                    <p class = "down-arrow">▼</p>
-                </div>
+                <section id = "dialogMain">
+                    <section id = "dialog">
+                        <section id = "hours">
+                        <div class = "number">
+                            <p class = "up-arrow">▲</p>
+                            <input text = "text" readonly value = "5">
+                            <p class = "down-arrow">▼</p>
+                        </div>
+                        </section>
+                        <p>:</p>
+                        <section id = "minutes">
+                        <div class = "number">
+                            <p class = "up-arrow">▲</p>
+                            <input text = "number" readonly>
+                            <p class = "down-arrow">▼</p>
+                        </div>
+                        <div class = "number">
+                            <p class = "up-arrow">▲</p>
+                            <input text = "number" readonly>
+                            <p class = "down-arrow">▼</p>
+                        </div>
+                        </section>
+                        <p>:</p>
+                        <section id = "seconds">
+                            <div class = "number">
+                            <p class = "up-arrow">▲</p>
+                            <input text = "number" readonly>
+                            <p class = "down-arrow">▼</p>
+                        </div>
+                        <div class = "number">
+                            <p class = "up-arrow">▲</p>
+                            <input text = "number" readonly>
+                            <p class = "down-arrow">▼</p>
+                        </div>
+                        </section>
+                    </section>
+                    <div id = "confirm">Confirm</div>
                 </section>
             </section>
-            <div id = "confirm">Confirm</div>
         </dialog>
     </body>
 </html>

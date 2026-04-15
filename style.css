@@ -135,18 +135,53 @@ body {
 
 }
 
-#dialogBox {
-    width: 80vw;
-    height: 75vh;
+#dialogMain {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 30px;
     justify-content: space-evenly;
     gap: 30px;
-    border-radius: 50px;
+    width: 100%;
+    background-color: white;
+    height: 90%;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
 }
 
 #dialogBox::backdrop {
     background-color: #1c0c39a7;
+}
+
+#dialogBox {
+    width: 80vw;
+    height: 80vh;
+    border-radius: 50px;
+    display: flex;
+    background-color:#1c0c39;
+}
+
+#dialogTab {
+    width: 100%;
+    height: 10%;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.X {
+    margin-left: auto;
+    margin-right: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+    font-size: 1.5vw;
+    background-color: white;
+    color: #1c0c39;
+    text-align: center;
+}
+
+.title {
+    margin-left: 30px;
+    font-size: 1.8vw;
 }
