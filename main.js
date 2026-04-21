@@ -314,4 +314,11 @@ function InitDoc() {
         }
     })
 }
+
 //---------------------------------------------------------------------------------------------------------------//
+
+
+
+// working on a new device, testing to see if git is set up properly
+// its not working ahh
+//help
