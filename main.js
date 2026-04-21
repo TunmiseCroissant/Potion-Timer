@@ -14,11 +14,12 @@ let pause = document.getElementById("pauseButton");
 let active = false
 let timeLeft;
 let totalTime = 0;
+let tokens = 0;
 InitDoc()
 
 const spline = new Application(canvas);
 spline.load("https://draft.spline.design/2dqEETH3l8dNrvfS/scene.splinecode").then(() => {
-
+    console.log("loaded")
 });
 
 //variable and basic function set up
@@ -73,7 +74,7 @@ const Timer = (ms, signal, startingPoint = start) => {
         //when time is done, time is completed
         const timer = setTimeout(() => {
             clearInterval(updater)
-            resolve({message : "Time completed", time : ms})
+            resolve({message : "Time completed", time : totalTime})
         }, ms)
 
         // if timer is stopoped, stop countdown and updated
@@ -175,7 +176,7 @@ const Begin = async (time, startPosition = start) => {
     }, {once : true})
 
 
-    timer.promise.then(resolve => timerDone(resolve.message)).catch((err) => {
+    timer.promise.then(resolve => timerDone(resolve)).catch((err) => {
         console.log(err.message)
         console.log ("Elapsed time: " + MS_ToF(err.time))
     }).finally(() => {
@@ -229,10 +230,11 @@ const finishBottle = (variable, final, intial, ms) => {
         requestAnimationFrame(animate);
 }
 //when the timer is done
-const timerDone = async (message) => {
+const timerDone = async (resolve) => {
     await sleep(1000);
     spline.setVariable('start', 'False');
     timerActive(false);
+    tokens += resolve.time / 6000;
     
 }
 
@@ -316,3 +318,16 @@ function InitDoc() {
 }
 
 //---------------------------------------------------------------------------------------------------------------//
+
+
+const data = {
+    get totalTime() {
+        return totalTime
+    },
+
+    get tokens() {
+        return tokens
+    }
+}
+
+export default data
