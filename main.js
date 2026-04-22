@@ -6,6 +6,7 @@ import { Application } from "https://esm.sh/@splinetool/runtime";
 //document elements
 const canvas = document.getElementById('canvas3d');
 const dialog = document.getElementById('dialogBox');
+const completeDialog = document.getElementById('completedDialog');
 const startButton = document.getElementById('startButton');
 const XButtons = document.querySelectorAll(".X");
 const TimeView = document.getElementById("TimeView");
@@ -74,7 +75,7 @@ const Timer = (ms, signal, startingPoint = start) => {
         //when time is done, time is completed
         const timer = setTimeout(() => {
             clearInterval(updater)
-            resolve({message : "Time completed", time : totalTime})
+            resolve({message : "Time completed!", time : totalTime})
         }, ms)
 
         // if timer is stopoped, stop countdown and updated
@@ -87,7 +88,7 @@ const Timer = (ms, signal, startingPoint = start) => {
                 let position = spline.getVariable('liquid')
                 finishBottle('liquid', end, position, 2000)
                 const endTime = performance.now()
-                reject({message: "Timer stopped early!", time : totalTime}, {once : true})
+                resolve({message: "Timer stopped early!", time : totalTime}, {once : true})
                 totalTime = 0;
             } else if (signal.reason === "pause" && active === true) {
                 if (active) {
@@ -122,7 +123,7 @@ const Timer = (ms, signal, startingPoint = start) => {
                         clearTimeout(timer);
                         clearInterval(updater)
                         finishBottle("liquid", end, endposition, 2000)
-                        reject({message: "Timer stopped when paused!", time : totalTime}, {once : true})
+                        resolve({message: "Timer stopped early!", time : totalTime}, {once : true})
                         totalTime = 0;
                         timerActive(false);
                     }
@@ -230,11 +231,17 @@ const finishBottle = (variable, final, intial, ms) => {
         requestAnimationFrame(animate);
 }
 //when the timer is done
+
 const timerDone = async (resolve) => {
+    tokens += resolve.time / 60000;
+    completeDialog.children[0].innerText = resolve.message;
+    completeDialog.children[1].innerText = "Elapsed time : " + MS_ToF(resolve.time)
+    completeDialog.children[2].innerText = "Total tokens : " + Math.floor(tokens);
+    completeDialog.style.display = "flex";
+    completeDialog.showModal();
     await sleep(1000);
     spline.setVariable('start', 'False');
     timerActive(false);
-    tokens += resolve.time / 6000;
     
 }
 
@@ -301,6 +308,12 @@ function InitDoc() {
             parent.querySelector('input').value = newValue
         })
     })
+
+    document.getElementById('endButton').addEventListener("click", () => {
+        completeDialog.style.display = "none";
+        completeDialog.close();
+    })
+
 
     //when time is confirmed
     document.getElementById('confirm').addEventListener("click", () => {
