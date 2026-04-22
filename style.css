@@ -17,12 +17,12 @@
 }
 
 #canvas {
-  width: 400px; 
-  height: 400px;
+  width: 30vw; 
+  height: 30vw;
   background-color: #2f175d;
   margin-top: 10px;
   position: absolute;
-  bottom: 350px;
+  top: 20px;
   overflow: hidden;
   border-radius: 20px;
   pointer-events: none;
@@ -34,7 +34,7 @@
 
 #main {
     width: 60%;
-    height: 200px;
+    height: 25vh;
     background-color: white;
     position: absolute;
     bottom: 40px;
