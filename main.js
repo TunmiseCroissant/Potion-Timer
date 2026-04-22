@@ -15,7 +15,7 @@ let pause = document.getElementById("pauseButton");
 let active = false
 let timeLeft;
 let totalTime = 0;
-let tokens = 0;
+let stats = {}
 InitDoc()
 
 const spline = new Application(canvas);
@@ -230,13 +230,15 @@ const finishBottle = (variable, final, intial, ms) => {
 
         requestAnimationFrame(animate);
 }
-//when the timer is done
+const updateStorage = () => localStorage.setItem('stats', JSON.stringify(stats));
 
+//when the timer is done
 const timerDone = async (resolve) => {
-    tokens += resolve.time / 60000;
+    stats.tokens += resolve.time / 60000;
+    updateStorage();
     completeDialog.children[0].innerText = resolve.message;
     completeDialog.children[1].innerText = "Elapsed time : " + MS_ToF(resolve.time)
-    completeDialog.children[2].innerText = "Total tokens : " + Math.floor(tokens);
+    completeDialog.children[2].innerText = "Total tokens : " + Math.floor(stats.tokens);
     completeDialog.style.display = "flex";
     completeDialog.showModal();
     await sleep(1000);
@@ -281,6 +283,18 @@ function timerActive(on) {
 
 //Init Functions ------------------------------------------------------------------------------------------------//
 function InitDoc() {
+    let temp = {
+        tokens : 0
+    }   
+
+    try {
+        stats = JSON.parse(localStorage.getItem("stats")) || temp;
+    } catch {
+        localStorage.clear()
+        stats = temp;
+    }
+
+
     XButtons.forEach(button => {
         button.addEventListener("click", () => {
             let parent = button.parentElement
@@ -339,7 +353,7 @@ const data = {
     },
 
     get tokens() {
-        return tokens
+        return stats.tokens
     }
 }
 
