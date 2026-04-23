@@ -16,6 +16,11 @@
   font-style: italic;
 }
 
+:root {
+    --light-purple: #c6aff4
+    --bright-purple: #2f175d;
+}
+
 #canvas {
   width: 28vw; 
   height: 28vw;
@@ -74,6 +79,10 @@ body {
     flex-direction: column;
     align-items: center;
     justify-items: end;
+    background-size: 40px 40px;
+    background-image:
+        linear-gradient(to right, #ccc 1px, transparent 1px),
+        linear-gradient(to bottom, #ccc 1px, transparent 1px);
 }
 
 .active {
