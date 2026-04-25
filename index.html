@@ -3,6 +3,7 @@
     <head>
         <title>Potion Timer</title>
         <link rel = "stylesheet" href="./style.css">
+        <link rel = "stylesheet" href="./drags.css">
     </head>
     <body>
         <div id = "canvas">
@@ -14,6 +15,32 @@
                 <button id = "startButton" class = "inactive">Start</button>
                 <button id = "pauseButton" class = "active">Pause</button>
                 <button id = "abortButton" class = "active">Cancel</button>
+            </div>
+         </div>
+         <div id = "themes" class = "drag">
+            <p>Themes</p>
+            <details id = "PresetThemes">
+                <summary>Preset themes</summary>
+            </details>
+            <details id = "CustomThemes">
+                <summary>Custom themes</summary>
+                <p id = "add">Add new +</p>
+            </details>
+            <p>Current theme : </p>
+         </div>
+         <div id = "themeCreator" class = "drag">
+            <p>New theme</p>
+            <p>Name :</p>
+            <input type="text" id="myInput" placeholder="Type something...">
+            <p>Main color: </p>
+            <input type = "color" value = "#FFFFFF" name = "main">
+            <p>Secondary color: </p>
+            <input type = "color" value = "#FFFFFF" name = "second">
+            <p>Accent color: </p>
+            <input type = "color" value = "#FFFFFF" name = "accent">
+            <div class = "bottomDrag">
+                <div class = "closeDrag">Close</div>
+                <div class = "saveDrag" id = "saveTheme">Save</div>
             </div>
          </div>
         <dialog id = "dialogBox" class = "dialogs">
@@ -69,6 +96,7 @@
             <div id = "endButton">Ok</div>
         </dialog>
         <script type = "module" src = "./main.js"></script>
+        <script type = "module" src = "./themes.js"></script>
         <script type = "module" src = "./music.js"></script>
     </body>
 </html>

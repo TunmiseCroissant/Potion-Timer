@@ -1,0 +1,36 @@
+.drag {
+    position: absolute;
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    background-color: white;
+    width: fit-content;
+    text-align: left;
+    right: 2vw;
+}
+
+.drag > * {
+    margin: 5px;
+    margin-right: 5vw;
+    margin-left: 0.7vw;
+}
+
+.drag > :first-child{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bottomDrag {
+    width: 100%;
+}
+
+.bottomDrag > * {
+    margin: 5px;
+}
+
+#themeCreator {
+    display: none;
+}

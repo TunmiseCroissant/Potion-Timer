@@ -17,14 +17,15 @@
 }
 
 :root {
-    --light-purple: #c6aff4
-    --bright-purple: #2f175d;
+    --light: #c6aff4;
+    --bright: #2f175d;
+    --dark: #1c0c39;
 }
 
 #canvas {
   width: 28vw; 
   height: 28vw;
-  background-color: #2f175d;
+  background-color: var(--bright);
   position: absolute;
   top: 8vh;
   overflow: hidden;
@@ -42,25 +43,25 @@
     background-color: white;
     position: absolute;
     bottom: 5vh;
-    border: solid 5px #2f175d;
+    border: solid 5px var(--bright);
     overflow: hidden;
     border-radius: 30px;
 }
 
 #options {
-    background-color: #c6aff4;
+    background-color: var(--light);
     width: 100%;
     height: 85%;
     position: absolute;
     bottom: 0;
-    border-top: solid 4px #2f175d;
+    border-top: solid 4px var(--bright);
     display: flex;
     align-items: center;
     justify-content: space-around;
     padding: 30px;
     font-size: 3vw;
     letter-spacing: 0.2vw;
-    color: #1c0c39;
+    color: var(--dark);
     text-align: center;
 }
 
@@ -70,7 +71,7 @@
     font-size: 1.7vw;
     border-radius: 10px;
     background-color: white;
-    color: #2f175d;
+    color: var(--bright);
     cursor: pointer;
 }
 
@@ -83,6 +84,7 @@ body {
     background-image:
         linear-gradient(to right, #ccc 1px, transparent 1px),
         linear-gradient(to bottom, #ccc 1px, transparent 1px);
+    width: 100vw;
 }
 
 .active {
@@ -112,11 +114,10 @@ body {
     width: 40%;
     font-size: 7vw;
     text-align: center;
-    border: solid #2f175d 3px;
+    border: solid var(--bright) 3px;
     border-radius: 10px;
     color: black;
     background-color: white;
-
 }
 
 #dialog p {
@@ -140,7 +141,7 @@ body {
 
 #confirm {
     width: 50%;
-    border: #2f175d solid 3px;
+    border: var(--bright) solid 3px;
     border-radius: 10px;
     text-align: center;
     padding: 20px;
@@ -163,21 +164,21 @@ body {
 }
 
 #dialogBox::backdrop {
-    background-color: #1c0c39a7;
+    background-color: var(--dark)a7;
 }
 
 #dialogBox {
     width: 80vw;
     height: 80vh;
     border-radius: 50px;
-    background-color:#1c0c39;
+    background-color:var(--dark);
 }
 
 #completedDialog {
     width: 60vw;
     height: 50vh;
     border-radius: 50px;
-    background-color:#1c0c39;
+    background-color:var(--dark);
     color: white;
     text-align: center;
     display: none;
@@ -185,12 +186,12 @@ body {
     align-items: center;
 }
 
-#endButton {
+#endButton{
     width: 20%;
-    border-radius: 5px;
+    border: 5px;
     font-size: 1.5vw;
     background-color: white;
-    color: #1c0c39;
+    color: var(--dark);
     text-align: center;
     cursor: pointer;
     margin-top: 2%;
@@ -201,7 +202,7 @@ body {
 }
 
 #completedDialog::backdrop {
-    background-color: #1c0c398a;
+    background-color: var(--dark)8a;
 }
 
 #dialogTab {
@@ -220,7 +221,7 @@ body {
     border-radius: 5px;
     font-size: 1.5vw;
     background-color: white;
-    color: #1c0c39;
+    color: var(--dark);
     text-align: center;
     cursor: pointer;
 }
@@ -240,4 +241,25 @@ body {
 
 .up-arrow, .down-arrow {
     cursor: pointer;
+}
+
+.drag {
+    border: var(--dark) solid 2px;
+    border-radius: 3px;
+}
+
+
+input[type="color"] {
+    background-color: white;
+    border: white;
+    cursor: pointer;
+}
+
+.closeDrag, .saveDrag {
+    cursor: pointer;
+    border: var(--dark) 2px solid;
+    border-radius: 3px;
+    padding: 2px;
+    text-align: center;
+    width: 80%;
 }
