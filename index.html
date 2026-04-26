@@ -26,18 +26,53 @@
                 <summary>Custom themes</summary>
                 <p id = "add">Add new +</p>
             </details>
-            <p>Current theme : </p>
+            <details id = "potionColors">
+                <summary>Potion themes</summary>
+                <p id = "addPotion">Add new +</p>
+            </details>
          </div>
          <div id = "themeCreator" class = "drag">
             <p>New theme</p>
             <p>Name :</p>
-            <input type="text" id="myInput" placeholder="Type something...">
+            <input type="text" id="themName" placeholder="Enter name...">
             <p>Main color: </p>
             <input type = "color" value = "#FFFFFF" name = "main">
             <p>Secondary color: </p>
             <input type = "color" value = "#FFFFFF" name = "second">
             <p>Accent color: </p>
             <input type = "color" value = "#FFFFFF" name = "accent">
+            <div class = "bottomDrag">
+                <div class = "closeDrag">Close</div>
+                <div class = "saveDrag" id = "saveTheme">Save</div>
+            </div>
+         </div>
+         <div id = "potionThemeCreator" class = "drag">
+            <p>New Potion theme</p>
+            <p>Name :</p>
+            <input type="text" id="PotionName" placeholder="Enter Nmae...">
+            <p>Background color: </p>
+            <input type = "color" value = "#FFFFFF" name = "background">
+            <p>Outline color: </p>
+            <input type = "color" value = "#FFFFFF" name = "outline">
+            <p>Cork color: </p>
+            <input type = "color" value = "#FFFFFF" name = "cork">
+            <p>Liquid colors: </p>
+            <div id = "liquidColors">
+            <input type = "color" value = "#FFFFFF" name = "liquid1">
+            <input type = "color" value = "#FFFFFF" name = "liquid2">
+            </div>
+            <p>highlight colors: </p>
+            <div id = "highlightColors">
+            <input type = "color" value = "#FFFFFF" name = "highlight1">
+            <input type = "color" value = "#FFFFFF" name = "highlight2">
+            <input type = "color" value = "#FFFFFF" name = "highlight3">
+            <input type = "color" value = "#FFFFFF" name = "highlight4">
+            <br>
+            <input type = "color" value = "#FFFFFF" name = "highlight5">
+            <input type = "color" value = "#FFFFFF" name = "highlight6">
+            <input type = "color" value = "#FFFFFF" name = "highlight7">
+            <input type = "color" value = "#FFFFFF" name = "highlight8">
+            </div>
             <div class = "bottomDrag">
                 <div class = "closeDrag">Close</div>
                 <div class = "saveDrag" id = "saveTheme">Save</div>

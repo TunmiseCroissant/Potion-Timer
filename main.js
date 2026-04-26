@@ -25,12 +25,12 @@ spline.load("https://draft.spline.design/2dqEETH3l8dNrvfS/scene.splinecode").the
         outline(color) {
             spline.findObjectByName('bottle').material.layers.find((l) => l.type === 'outline').outlineColor = color
         },
-        Cork(color) {
+        cork(color) {
             spline.findObjectById('8baaaf87-28e6-42cf-8195-bf89ec1958b0').color = color
             spline.findObjectByName('cork top').color = color
         },
-        liquid(colors) {
-            spline.findObjectById('0c0c9af4-d6dc-4d5c-9534-8ec3a2c061ce').material.layers.find((l) => l.type === 'depth').colors = colors
+        liquid(color, pos) {
+            spline.findObjectById('0c0c9af4-d6dc-4d5c-9534-8ec3a2c061ce').material.layers.find((l) => l.type === 'depth').colors[pos] = color;
         },
         highlights(colors) {
             let highlight1 = spline.findObjectByName('bottle colors').material.layers.find((l) => l.type === 'depth')
