@@ -26,11 +26,14 @@
                 <summary>Custom themes</summary>
                 <p id = "add">Add new +</p>
             </details>
+            <div class = "bottomDrag">
+                <div class = "closeDrag">Close</div>
+            </div>
          </div>
          <div id = "tabs" class = "drag">
             <ul>
-                <li value = "PotionTheme"> Edit Potion colors</li>
-                <li value = "Themes"> themes</li>
+                <li onclick="openDiv('potionThemeCreator')"> Edit Potion colors</li>
+                <li onclick="openDiv('themes')"> themes</li>
             </ul>
          </div>
          <div id = "themeCreator" class = "drag">
@@ -132,6 +135,7 @@
             <p>Total tokens : </p>
             <div id = "endButton">Ok</div>
         </dialog>
+        <script src = "./func.js"></script>
         <script type = "module" src = "./main.js"></script>
         <script type = "module" src = "./themes.js"></script>
         <script type = "module" src = "./music.js"></script>
