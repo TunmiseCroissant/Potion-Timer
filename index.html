@@ -26,10 +26,12 @@
                 <summary>Custom themes</summary>
                 <p id = "add">Add new +</p>
             </details>
-            <details id = "potionColors">
-                <summary>Potion themes</summary>
-                <p id = "addPotion">Add new +</p>
-            </details>
+         </div>
+         <div id = "tabs" class = "drag">
+            <ul>
+                <li value = "PotionTheme"> Edit Potion colors</li>
+                <li value = "Themes"> themes</li>
+            </ul>
          </div>
          <div id = "themeCreator" class = "drag">
             <p>New theme</p>
@@ -47,7 +49,7 @@
             </div>
          </div>
          <div id = "potionThemeCreator" class = "drag">
-            <p>New Potion theme</p>
+            <p>Edit Potion theme</p>
             <p>Name :</p>
             <input type="text" id="PotionName" placeholder="Enter Nmae...">
             <p>Background color: </p>
@@ -63,15 +65,15 @@
             </div>
             <p>highlight colors: </p>
             <div id = "highlightColors">
+            <input type = "color" value = "#FFFFFF" name = "highlight0">
             <input type = "color" value = "#FFFFFF" name = "highlight1">
             <input type = "color" value = "#FFFFFF" name = "highlight2">
             <input type = "color" value = "#FFFFFF" name = "highlight3">
-            <input type = "color" value = "#FFFFFF" name = "highlight4">
             <br>
+            <input type = "color" value = "#FFFFFF" name = "highlight4">
             <input type = "color" value = "#FFFFFF" name = "highlight5">
             <input type = "color" value = "#FFFFFF" name = "highlight6">
             <input type = "color" value = "#FFFFFF" name = "highlight7">
-            <input type = "color" value = "#FFFFFF" name = "highlight8">
             </div>
             <div class = "bottomDrag">
                 <div class = "closeDrag">Close</div>

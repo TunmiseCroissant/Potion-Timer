@@ -20,7 +20,7 @@ export let materials = {}
 InitDoc()
 
 export const spline = new Application(canvas);
-spline.load("https://draft.spline.design/2dqEETH3l8dNrvfS/scene.splinecode").then(() => {
+spline.load("https://prod.spline.design/qiNO8oYRDMMfNw8j/scene.splinecode").then(() => {
     materials = {
         outline(color) {
             spline.findObjectByName('bottle').material.layers.find((l) => l.type === 'outline').outlineColor = color
@@ -32,17 +32,35 @@ spline.load("https://draft.spline.design/2dqEETH3l8dNrvfS/scene.splinecode").the
         liquid(color, pos) {
             spline.findObjectById('0c0c9af4-d6dc-4d5c-9534-8ec3a2c061ce').material.layers.find((l) => l.type === 'depth').colors[pos] = color;
         },
-        highlights(colors) {
-            let highlight1 = spline.findObjectByName('bottle colors').material.layers.find((l) => l.type === 'depth')
-            let highlight2 = spline.findObjectByName('bottle colors 2').material.layers.find((l) => l.type === 'depth')
-            highlight1.colorA = colors[0]
-            highlight1.colorB = colors[1]
-            highlight1.colorC = colors[2]
-            highlight1.colorD = colors[3]
-            highlight2.colorA = colors[4]
-            highlight2.colorB = colors[5]
-            highlight2.colorC = colors[6]
-            highlight2.colorD = colors[7]
+        highlight(color, pos) {
+            let highlight1 = spline.findObjectByName('bottle colors').material.layers.find((l) => l.type === 'noise')
+            let highlight2 = spline.findObjectByName('bottle colors 2').material.layers.find((l) => l.type === 'noise')
+            switch (pos) {
+                case 0:
+                    highlight1.colorA = color;
+                    break;
+                case 1:
+                    highlight1.colorB = color;
+                    break;
+                case 2:
+                    highlight1.colorC = color;
+                    break;
+                case 3:
+                    highlight1.colorD = color;
+                    break;
+                case 4:
+                    highlight2.colorA = color;
+                    break;
+                case 5:
+                    highlight2.colorB = color;
+                    break;
+                case 6:
+                    highlight2.colorC = color;
+                    break;
+                case 7:
+                    highlight2.colorD = color;
+                    break;
+            }
         }
     }
     

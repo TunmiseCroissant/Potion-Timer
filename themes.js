@@ -149,6 +149,9 @@ potionThemeCreator.addEventListener("change", e => {
         if (name === "background") {
             spline.setBackgroundColor(value)
         }
+        if (name.startsWith("highlight")) {
+            materials.highlight(value, Number(name.slice(-1)))
+        }
     }
 })
 
