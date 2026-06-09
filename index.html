@@ -31,9 +31,11 @@
             </div>
          </div>
          <div id = "tabs" class = "drag">
+            <h2>Tabs</h2>
             <ul>
                 <li onclick="openDiv('potionThemeCreator')"> Edit Potion colors</li>
                 <li onclick="openDiv('themes')"> themes</li>
+                <li onclick="openDiv('calc')"> Calculator</li>
             </ul>
          </div>
          <div id = "themeCreator" class = "drag">
@@ -83,6 +85,29 @@
                 <div class = "saveDrag" id = "saveTheme">Save</div>
             </div>
          </div>
+         <div id = "calc" class = "drag">
+            <input id = "calcDisplay" readonly>
+            <div>
+            <button onclick = "appendToDisplay('+')">+</button>
+            <button onclick = "appendToDisplay('7')">7</button>
+            <button onclick = "appendToDisplay('8')">8</button>
+            <button onclick = "appendToDisplay('9')">9</button>
+            <button onclick = "appendToDisplay('-')">-</button>
+            <button onclick = "appendToDisplay('4')">4</button>
+            <button onclick = "appendToDisplay('5')">5</button>
+            <button onclick = "appendToDisplay('6')">6</button>
+            <button onclick = "appendToDisplay('*')">*</button>
+            <button onclick = "appendToDisplay('1')">1</button>
+            <button onclick = "appendToDisplay('2')">2</button>
+            <button onclick = "appendToDisplay('3')">3</button>
+            <button onclick = "appendToDisplay('/')">/</button>
+            <button onclick = "appendToDisplay('0')">0</button>
+            <button onclick = "appendToDisplay('.')">.</button>
+            <button onclick = "calculate()">=</button>
+            <button onclick = "clearCalc()">C</button>
+            <div class = "closeDrag">Close</div>
+            </div>
+        </div>
         <dialog id = "dialogBox" class = "dialogs">
             <section class = "background" id = "dialogBackground">
                 <div class = "tab" id = "dialogTab">
@@ -135,6 +160,7 @@
             <p>Total tokens : </p>
             <div id = "endButton">Ok</div>
         </dialog>
+
         <script src = "./func.js"></script>
         <script type = "module" src = "./main.js"></script>
         <script type = "module" src = "./themes.js"></script>

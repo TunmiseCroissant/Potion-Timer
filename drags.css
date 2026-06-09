@@ -2,7 +2,7 @@
     position: absolute;
     z-index: 10;
     cursor: pointer;
-    display: flex;
+    display: none;
     flex-direction: column;
     height: fit-content;
     background-color: white;
@@ -33,4 +33,29 @@
 
 #themeCreator {
     display: none;
+}
+
+#tabs {
+    display: flex;
+}
+
+#calc {
+    width: 10vw;
+}
+
+#calc div {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: fit-content;
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#calc div .closeDrag {
+    grid-column: span 3;
+    width: 4vw;
+    padding: auto;
+    text-align: center;
 }
